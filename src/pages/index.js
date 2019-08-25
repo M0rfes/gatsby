@@ -14,7 +14,7 @@ export default () => {
           info="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, dolorum. Ipsa sapiente, porro quibusdam mollitia eaque neque. Rerum, nam impedit!"
         >
           <Link to="Tours" className="btn-white">
-            Explore tours
+            explore
           </Link>
         </Banner>
       </SimpleHero>
