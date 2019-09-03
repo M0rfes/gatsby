@@ -1,14 +1,15 @@
-import React, { useState } from "react"
+import React from "react"
+import { Link, graphql } from "gatsby"
+
 import Layout from "../components/Layout"
-import SimpleHero from "../components/SimpleHero"
+import StyledHero from "../components/StyledHero"
 import Banner from "../components/Banner"
-import { Link } from "gatsby"
 import About from "../components/Home/About"
 import Services from "../components/Home/Services"
-export default () => {
+export default ({ data }) => {
   return (
     <Layout>
-      <SimpleHero>
+      <StyledHero home="true" img={data.BG.childImageSharp}>
         <Banner
           title="Continue exploring"
           info="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, dolorum. Ipsa sapiente, porro quibusdam mollitia eaque neque. Rerum, nam impedit!"
@@ -17,9 +18,21 @@ export default () => {
             explore
           </Link>
         </Banner>
-      </SimpleHero>
+      </StyledHero>
       <About />
       <Services />
     </Layout>
   )
 }
+
+export const query = graphql`
+  query {
+    BG: file(relativePath: { eq: "defaultBcg.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 4060) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`
