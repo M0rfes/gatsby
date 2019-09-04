@@ -1,5 +1,8 @@
 import React from "react"
 import { Link } from "gatsby"
+import { graphql } from "gatsby"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+import StyledHero from "../components/StyledHero"
 // @ts-ignore
 import styles from "../css/error.module.css"
 import Layout from "../components/Layout"
@@ -9,13 +12,23 @@ const ErrorPage = () => {
     <Layout>
       <header className={styles.error}>
         <Banner title="oops It's a dead end" info="">
-          <Link to="/" className="btn-white">
+          <AniLink to="/" className="btn-white">
             GO Home
-          </Link>
+          </AniLink>
         </Banner>
       </header>
     </Layout>
   )
 }
-
+export const query = graphql`
+  query {
+    errorBG: file(relativePath: { eq: "defaultBcg.jpeg" }) {
+      childImageSharp {
+        fluid(maxWidth: 4060) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`
 export default ErrorPage

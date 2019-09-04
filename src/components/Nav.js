@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+
 // @ts-ignore
 import styles from "../css/navbar.module.css"
 import links from "../constants/link"
@@ -6,7 +8,7 @@ import social from "../constants/social-icons"
 // @ts-ignore
 import logo from "../images/logo.svg"
 import { FaAlignRight } from "react-icons/fa"
-import { Link } from "gatsby"
+
 const Nav = () => {
   const [isOpen, setIsOpen] = useState(false)
   const toggleNav = () => setIsOpen(isOpen => !isOpen)
@@ -28,7 +30,9 @@ const Nav = () => {
         >
           {links.map((item, i) => (
             <li key={i}>
-              <Link to={item.path}>{item.name}</Link>
+              <AniLink fade to={item.path}>
+                {item.name}
+              </AniLink>
             </li>
           ))}
         </ul>
